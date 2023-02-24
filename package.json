@@ -1,0 +1,34 @@
+{
+  "dependencies": {
+    "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "await-to-js": "^3.0.0",
+    "connect-flash": "^0.1.1",
+    "dot-env": "^0.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.17.3",
+    "mini-css-extract-plugin": "^2.7.2",
+    "node-sass": "^8.0.0",
+    "nodemon": "^2.0.20",
+    "passport": "^0.6.0",
+    "sass-loader": "^13.2.0"
+  },
+  "scripts": {
+    "start": "nodemon server.js",
+    "development":"mix",
+    "watch": "npx mix watch"
+  },
+  "name": "y",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "laravel-mix": "^6.0.49",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.58.3"
+  }
+}
