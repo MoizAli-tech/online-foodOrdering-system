@@ -16,7 +16,7 @@
     "sass-loader": "^13.2.0"
   },
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "nodemon server.js -e js,ejs,scss",
     "development":"mix",
     "watch": "npx mix watch"
   },
