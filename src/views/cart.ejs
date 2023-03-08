@@ -1,0 +1,59 @@
+<section class="cart">
+    <% if(!session.cart){%>
+    <div class="empty-cart container mb-4 text-center">
+
+        <h2 class="mb-2 font-bold text-3xl"> Empty Cart</h2>
+        <p class="text-gray-500 text-lg">you probably haven't ordered a pizza yet
+            to order a pizza go to main page
+        </p>
+        <div class=" my-4 mx-auto  w-96">
+            <img src="img/img/empty-cart.png"/>
+        </div>
+        <button href="/" class="add-to-cart px-5 py-2 rounded-full">Go back</button>
+    </div>
+    <%} else{ %>
+    <div class="order container mx-auto w-1/2 mb-4">
+        <div class="flex border-b border-gray-300 pb-3 mb-4">
+            <div class=""> <img src="img/img/cart-black.png"/></div>
+            <h1 class="font-bold text-2xl ml-4"> Order Summary </h1>
+        </div>
+        <%  for(let  item of session.cart? Object.values(session.cart.items) : []) {%>
+        <div class="flex items-center justify-between border-b border-gray-300 py-4">
+            <div class="flex items-center ">
+
+               
+                <div class="w-24">
+                    <img src="img/img/<%= item.item.image%>" alt=""/>
+                </div>
+              
+                <div class="ml-4">
+                    <h1><%= item.item.name%></h1>
+                    <span class="text-xs uppercase text-gray-600"><%= item.item.size%></span>
+                </div>
+            </div>
+            <span><%= item.qty%> Pcs</span>
+            <span class="text-lg font-bold">$ <%= parseInt(item.item.price) * parseInt(item.qty)%></span>
+           
+        </div>
+        <%}%>
+
+    </div>
+
+    <div class="bill container mx-auto w-1/2 text-right py-4">
+        <span class="text-lg font-bold">Total Amount :</span> <span class="text-2xl font-bold color-primary">$ <%= session.cart? session.cart.totalPrice : "" %></span>
+        <form action="" method="" class="">
+            <input type="text" placeholder="adderss" name="adderss" class="border text-center border-gray-400 p-1 my-4 "/>
+           <div>
+              <button class="btn-primary border rounded-full py-2 px-4  mb-4">
+                    Order now
+                </button>
+           </div>
+        </form>
+        
+        <div>
+            <a href="/" class="btn-primary border rounded-full py-2 px-4  mb-4">Login to continue </a>
+        </div>
+    </div>
+    <%}%>
+
+</section>

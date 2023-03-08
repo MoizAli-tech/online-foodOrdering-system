@@ -1,4 +1,6 @@
 @import "./variables.scss";
+@import "~noty/src/noty.scss";
+@import "~noty/src/themes/mint.scss";
 
 body{
     font-family:"Lato","sans-serif";
@@ -25,6 +27,8 @@ section.hero {
     background-color: $secondary;
 }
 
+
+
 .size{
     background-color:$secondary;
 }
@@ -37,4 +41,26 @@ section.hero {
         transition:$smooth;
         color:$pure;
     }
+}
+
+.color-primary{
+    color:$primary;
+}
+
+.btn-primary{
+    background-color: $primary!important;
+    color:$pure;
+    transition: $smooth;
+    &:hover{
+        background-color: $primary-hover!important;
+        
+    }
+}
+
+.login,.register{
+    background-color: $secondary;
+}
+
+.noty_theme_mint{
+    border-radius: 50px!important;
 }
