@@ -2,7 +2,6 @@ function cartController(){
 
     return{
         cart(req,res){
-            console.log(req.session)
             res.render("cart")
         },
        
@@ -12,7 +11,9 @@ function cartController(){
                 req.session.cart = { items:{},
                 totalQty:0,
                 totalPrice:0
+                
                 }
+                console.log("i ran");
             }
 
             let cart = req.session.cart;

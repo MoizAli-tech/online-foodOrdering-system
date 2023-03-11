@@ -6,6 +6,8 @@ const expressLayout = require("express-ejs-layouts");
 const path = require("path");
 const session = require("express-session");
 const flash = require("express-flash");
+const passport = require("passport");
+require("./app/config/passport.js")(passport);
 const mongoose = require("mongoose");
 const mongoStore = require("connect-mongo");
 mongoose.set("strictQuery",true);
@@ -40,12 +42,16 @@ app.use(session({
 //express-flash
 app.use(flash())
 
+//passport 
+app.use(passport.initialize());
+app.use(passport.session());
+
 //view engine 
 app.set("views",path.join(__dirname,"./src/views"));
 app.set("view engine", "ejs");
 //global variables 
 app.use((req,res,next)=>{
-    res.locals.session = req.session;
+    res.locals.session =req.session;    
     next();
 })
 //calling all routes
@@ -57,7 +63,7 @@ app.listen(PORT);
 
 app.use((error,req,res,next)=>{
     if(error){
-        console.log(error.message)
+        console.log(error.message,"i am running to show error")
         // res.send(`${error.message}`)
     }
 })
