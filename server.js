@@ -10,7 +10,14 @@ const passport = require("passport");
 require("./app/config/passport.js")(passport);
 const mongoose = require("mongoose");
 const mongoStore = require("connect-mongo");
+const Emitter = require("events");
 mongoose.set("strictQuery",true);
+
+//event Emitter
+const eventEmitter = new Emitter();
+app.set("eventEmitter",eventEmitter);
+
+
 
 //db connection
 async function dbConnect(){
@@ -51,7 +58,8 @@ app.set("views",path.join(__dirname,"./src/views"));
 app.set("view engine", "ejs");
 //global variables 
 app.use((req,res,next)=>{
-    res.locals.session =req.session;    
+    res.locals.session =req.session;  
+    res.locals.user = req.user;  
     next();
 })
 //calling all routes
@@ -59,11 +67,32 @@ require("./routes/web")(app);
 
 
 
-app.listen(PORT);
+const server = app.listen(PORT);
+
+const io =  require("socket.io")(server);
+
+io.on("connection",(socket)=>{
+    socket.on("join",(data)=>{
+        console.log(data);
+        socket.join(data);
+    })
+})
+
+eventEmitter.on("orderUpdated",(data)=>{
+    
+    io.to( `order_${data.id}`).emit("orderUpdated",data);
+})
+
+
+eventEmitter.on("orderPlaced",(data)=>{
+    
+    io.to( `adminRoom`).emit("orderPlaced",data);
+})
 
 app.use((error,req,res,next)=>{
     if(error){
         console.log(error.message,"i am running to show error")
-        // res.send(`${error.message}`)
+        res.json(`${error.message}`)
     }
 })
+

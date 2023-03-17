@@ -2,18 +2,17 @@ function cartController(){
 
     return{
         cart(req,res){
-            res.render("cart")
+            return res.render("cart")
         },
        
         update(req,res){
-        
+            console.log("i am cart")
             if(!req.session.cart){
                 req.session.cart = { items:{},
                 totalQty:0,
                 totalPrice:0
                 
                 }
-                console.log("i ran");
             }
 
             let cart = req.session.cart;

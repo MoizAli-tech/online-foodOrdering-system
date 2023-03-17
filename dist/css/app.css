@@ -296,3 +296,27 @@ section.hero {
 .noty_theme_mint {
   border-radius: 50px !important;
 }
+
+.singleOrder {
+  background-color: #F8F8F8;
+  height: 100%;
+}
+
+.step-completed {
+  color: #ccc;
+}
+
+.current-status {
+  color: #FE5F1E;
+}
+
+small {
+  float: right;
+  padding-top: 20px;
+}
+
+@media (max-width: 830px) {
+  .container {
+    max-width: 90%;
+  }
+}

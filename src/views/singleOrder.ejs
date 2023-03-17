@@ -1,0 +1,40 @@
+<section class="singleOrder  pt-15">
+   <div class="container mx-auto">
+   
+    <div class="status-box lg:w-2/3 w-full mx-auto py-10" data-order="<%= JSON.stringify(order) %>">
+
+            <div class=" flex items-center justify-between mb-12">
+                <h1 class="text-lg md:text-xl font-bold ">Track Delivary Status</h1>
+                <h6 class="text-green-500 bg-white rounded-full p-2 "><%= order._id%></h6>
+            </div>
+
+            <ul>
+                <li class="status-line text-xl md:pb-16 pb-10 current-status" data-status="order placed"> 
+                    <i class="las la-paste mr-5 md:text-5xl text-4xl translate-y-2"></i>
+                     <span>Order Placed</span>
+                </li>
+
+                <li class="status-line text-xl md:pb-16 pb-10" data-status="confirmed"> 
+                    <i class="las la-check-double mr-5 md:text-5xl text-4xl translate-y-2"></i>
+                    <span>Order Confirmed</span>
+                </li>
+               
+                <li class="status-line text-xl md:pb-16 pb-10 " data-status="prepared">
+                    <i class="las la-pizza-slice mr-5 md:text-5xl text-4xl translate-y-2" ></i>
+                    <span>Preparing</span>
+                </li>
+                
+                <li class="status-line text-xl md:pb-16 pb-10" data-status="delivered"> 
+                    <i class="las la-truck mr-5 md:text-5xl text-4xl translate-y-2"></i> 
+                    <span>Out for Delivery</span>
+                </li>
+                <li class="status-line text-xl md:pb-16 pb-10" data-status="completed"> 
+                    <i class="las la-laugh-wink   mr-5  text-5xl text-4xl translate-y-2"></i>                    
+                    <span> Complete</span>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+  
+</section>

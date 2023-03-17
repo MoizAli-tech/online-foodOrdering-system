@@ -1,4 +1,4 @@
-<section class="cart">
+<section class="cart py-6">
     <% if(!session.cart){%>
     <div class="empty-cart container mb-4 text-center">
 
@@ -12,10 +12,10 @@
         <button href="/" class="add-to-cart px-5 py-2 rounded-full">Go back</button>
     </div>
     <%} else{ %>
-    <div class="order container mx-auto w-1/2 mb-4">
+    <div class="order container mx-auto sm:w-2/3 md:w-1/2  mb-4">
         <div class="flex border-b border-gray-300 pb-3 mb-4">
             <div class=""> <img src="img/img/cart-black.png"/></div>
-            <h1 class="font-bold text-2xl ml-4"> Order Summary </h1>
+            <h1 class="font-bold md:text-2xl text-xl ml-4"> Order Summary </h1>
         </div>
         <%  for(let  item of session.cart? Object.values(session.cart.items) : []) {%>
         <div class="flex items-center justify-between border-b border-gray-300 py-4">
@@ -27,7 +27,7 @@
                 </div>
               
                 <div class="ml-4">
-                    <h1><%= item.item.name%></h1>
+                    <h1 class="text-sm md:text-base"><%= item.item.name%></h1>
                     <span class="text-xs uppercase text-gray-600"><%= item.item.size%></span>
                 </div>
             </div>
@@ -39,20 +39,27 @@
 
     </div>
 
-    <div class="bill container mx-auto w-1/2 text-right py-4">
-        <span class="text-lg font-bold">Total Amount :</span> <span class="text-2xl font-bold color-primary">$ <%= session.cart? session.cart.totalPrice : "" %></span>
-        <form action="" method="" class="">
-            <input type="text" placeholder="adderss" name="adderss" class="border text-center border-gray-400 p-1 my-4 "/>
-           <div>
-              <button class="btn-primary border rounded-full py-2 px-4  mb-4">
+    <div class="bill container mx-auto w-1/2 text-right py-2 ">
+        <span class="text-lg font-bold mb-4">Total Amount :</span> <span class="md:text-2xl text-xl  font-bold color-primary">$ <%= session.cart? session.cart.totalPrice : "" %></span>
+        <% if(user) { %>
+            <%if(messages.error){%> <div class="text-red-500 text-sm"> <%=messages.error%> </div> <%}%>
+        <form action="/orders" method="POST" class="">
+            <input type="text" placeholder="adderss" name="address" class="border text-center border-orange-400 outline-orange-400 p-1 my-4 "/>
+            <input type="text" placeholder="phone number" name="phone" class="border text-center border-orange-400 outline-orange-400 p-1 md:my-4 mb-4"/>
+
+            <div>
+              <button class="btn-primary border rounded-full py-2 px-4  mb-4 text-base" id="order-btn">
                     Order now
-                </button>
+            </button>
            </div>
         </form>
+        <% } else { %>
         
-        <div>
-            <a href="/" class="btn-primary border rounded-full py-2 px-4  mb-4">Login to continue </a>
+        <div class="mt-6">
+            <a href="/login" class="btn-primary border rounded-full py-2 px-4 mt-6 text-base">Login to continue </a>
         </div>
+
+        <% } %>
     </div>
     <%}%>
 

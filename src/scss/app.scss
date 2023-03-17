@@ -5,6 +5,7 @@
 body{
     font-family:"Lato","sans-serif";
     color:$dark;
+   
 }
 
 nav li:last-child a{
@@ -64,3 +65,31 @@ section.hero {
 .noty_theme_mint{
     border-radius: 50px!important;
 }
+
+.singleOrder{
+    background-color: $secondary;
+    height:100%;
+}
+.step-completed{
+    color:$gray;
+}
+
+.current-status{
+    color:$primary;
+}
+
+small{
+    float: right;
+    padding-top:20px;
+}
+
+
+@media (max-width:830px){
+    .container{
+        max-width:90%;
+    }
+
+}
+
+
+

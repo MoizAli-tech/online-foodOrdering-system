@@ -8,6 +8,12 @@ function authController() {
         login(req, res) {
             return res.render("auth/login");
         },
+        logout(req,res,next){
+              req.logout((error)=>{
+                next(error)
+              });
+             return res.redirect("/")
+        },
         async postLogin(req, res, next) {
             const { email, password } = req.body;
             
@@ -26,14 +32,21 @@ function authController() {
                     req.flash("error", info.message);
                     return res.redirect("/login")
                 }
-
+                 let cart = req.session.cart;
+                
                 req.logIn(user, (error) => {
+                    req.session.cart = cart;
                     if (error) {
                         console.log(error)
                         req.flash("error", info.message);
                         return next(error)
                     }
-                    return res.redirect("/")
+                    if(req.user.role == "customer"){
+                        console.log("customer")
+                        return res.redirect("/");
+                    }else{
+                        return res.redirect("/admin")
+                    }
 
                 })
 
